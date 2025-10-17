@@ -4,27 +4,28 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   TouchableOpacity,
   Alert,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { Colors } from '@/constants/theme';
+import { Colors } from '@/constants/celestial-theme';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import WelcomeModal from '@/components/welcome-modal';
 
 const RegistrationScreen = () => {
   const { colorScheme = 'light' } = useColorScheme();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
-  const [sex, setSex] = useState('');
+  const [gender, setGender] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
   const router = useRouter();
 
   const validateForm = () => {
-    if (!email || !name || !birthDate || !sex) {
+    if (!email || !name || !birthDate || !gender) {
       Alert.alert('Error', 'All fields are required.');
       return false;
     }
@@ -36,18 +37,21 @@ const RegistrationScreen = () => {
       Alert.alert('Error', 'Please enter the date in YYYY-MM-DD format.');
       return false;
     }
-    if (!/^[FM]$/i.test(sex)) {
-      Alert.alert('Error', 'Please enter F or M for sex.');
-      return false;
-    }
     return true;
   };
 
   const handleRegister = () => {
     if (validateForm()) {
-      console.log('Registering with:', { email, name, birthDate, sex });
-      router.replace('/(tabs)');
+      // TODO: Add analytics tracking for registration event here
+      console.log('Analytics: User registered');
+      console.log('Registering with:', { email, name, birthDate, gender });
+      setModalVisible(true);
     }
+  };
+
+  const handleModalClose = () => {
+    setModalVisible(false);
+    router.replace('/(tabs)');
   };
 
   return (
@@ -62,6 +66,7 @@ const RegistrationScreen = () => {
         value={email}
         keyboardType="email-address"
         autoCapitalize="none"
+        accessibilityLabel="Enter your email address"
       />
       <ThemedText style={styles.label}>Name:</ThemedText>
       <TextInput
@@ -71,6 +76,7 @@ const RegistrationScreen = () => {
         ]}
         onChangeText={setName}
         value={name}
+        accessibilityLabel="Enter your name"
       />
       <ThemedText style={styles.label}>Birth Date:</ThemedText>
       <TextInput
@@ -81,23 +87,27 @@ const RegistrationScreen = () => {
         onChangeText={setBirthDate}
         value={birthDate}
         placeholder="YYYY-MM-DD"
+        accessibilityLabel="Enter your birth date in YYYY-MM-DD format"
       />
-      <ThemedText style={styles.label}>Sex (F/M):</ThemedText>
+      <ThemedText style={styles.label}>Gender:</ThemedText>
       <TextInput
         style={[
           styles.input,
           { color: Colors[colorScheme].text, borderColor: Colors[colorScheme].text },
         ]}
-        onChangeText={setSex}
-        value={sex}
-        maxLength={1}
+        onChangeText={setGender}
+        value={gender}
+        placeholder="Female, Male, Non-binary, etc."
+        accessibilityLabel="Enter your gender"
       />
       <TouchableOpacity
         style={[styles.button, { backgroundColor: Colors[colorScheme].tint }]}
         onPress={handleRegister}
+        accessibilityLabel="Register your account"
       >
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
+      <WelcomeModal visible={modalVisible} onClose={handleModalClose} />
     </ThemedView>
   );
 };

@@ -170,7 +170,7 @@ export async function createDistressReport(
 /**
  * Gets recent journal entries for a user
  */
-async function getRecentJournalEntries(
+export async function getRecentJournalEntries(
   userId: string,
   hoursBack: number
 ): Promise<Array<{ sentiment_score: number | null; created_at: Date }>> {
