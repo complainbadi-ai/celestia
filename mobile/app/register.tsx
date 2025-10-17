@@ -6,7 +6,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Colors } from '@/constants/theme';
 
 const RegistrationScreen = () => {
-  const { colorScheme } = useColorScheme();
+  const { colorScheme = 'light' } = useColorScheme();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
