@@ -1,11 +1,19 @@
-
 import express from 'express';
 import { db } from './db';
 
 const app = express();
 
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+let server;
 
-export { db };
+if (process.env.NODE_ENV !== 'test') {
+    const port = 3000;
+    server = app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+    });
+}
+
+export { app, db, server };

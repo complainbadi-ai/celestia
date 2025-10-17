@@ -136,7 +136,7 @@ describe('Distress Detection', () => {
     test('should NOT trigger on song lyrics about death', async () => {
       const result = await analyzeDistress(
         'test-user-id',
-        'Listening to a song about wanting to die, but I\'m actually feeling great!',
+        'Listening to a song with the lyrics \'I want to die\', but I\'m actually feeling great!',
         0.5
       );
       

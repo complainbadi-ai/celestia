@@ -50,8 +50,14 @@ router.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 // ========== AUTH ROUTES ==========
-router.post('/auth/register', (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 15 * 60 * 1000, max: 5 }), (0, validation_1.validateRequest)('register'), authController.register);
-router.post('/auth/login', (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 15 * 60 * 1000, max: 5 }), (0, validation_1.validateRequest)('login'), authController.login);
+router.post('/auth/register', [
+    (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 15 * 60 * 1000, max: 5 }),
+    (0, validation_1.validateRequest)('register'),
+], authController.register);
+router.post('/auth/login', [
+    (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 15 * 60 * 1000, max: 5 }),
+    (0, validation_1.validateRequest)('login'),
+], authController.login);
 router.post('/auth/logout', auth_1.authMiddleware, authController.logout);
 router.get('/auth/me', auth_1.authMiddleware, authController.getCurrentUser);
 // ========== HOROSCOPE ROUTES ==========
@@ -59,7 +65,11 @@ router.get('/horoscope/today', auth_1.authMiddleware, (0, validation_1.validateR
 router.get('/horoscope/:sign/:date', auth_1.authMiddleware, (0, validation_1.validateRequest)('getHoroscopeByDate'), horoscopeController.getHoroscopeByDate);
 router.get('/horoscope/compatibility', auth_1.authMiddleware, (0, validation_1.validateRequest)('getCompatibility'), horoscopeController.getCompatibility);
 // ========== JOURNAL ROUTES ==========
-router.post('/journal', auth_1.authMiddleware, (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 60 * 1000, max: 10 }), (0, validation_1.validateRequest)('createJournal'), journalController.createJournal);
+router.post('/journal', [
+    auth_1.authMiddleware,
+    (0, rateLimit_1.rateLimitMiddleware)({ windowMs: 60 * 1000, max: 10 }),
+    (0, validation_1.validateRequest)('createJournal'),
+], journalController.createJournal);
 router.get('/journal', auth_1.authMiddleware, journalController.getJournals);
 router.delete('/journal/:id', auth_1.authMiddleware, (0, validation_1.validateRequest)('deleteJournal'), journalController.deleteJournal);
 router.get('/journal/export', auth_1.authMiddleware, journalController.exportJournals);

@@ -17,15 +17,19 @@ router.get('/health', (req, res) => {
 // ========== AUTH ROUTES ==========
 router.post(
   '/auth/register',
-  rateLimitMiddleware({ windowMs: 15 * 60 * 1000, max: 5 }),
-  validateRequest('register'),
+  [
+    rateLimitMiddleware({ windowMs: 15 * 60 * 1000, max: 5 }),
+    validateRequest('register'),
+  ],
   authController.register
 );
 
 router.post(
   '/auth/login',
-  rateLimitMiddleware({ windowMs: 15 * 60 * 1000, max: 5 }),
-  validateRequest('login'),
+  [
+    rateLimitMiddleware({ windowMs: 15 * 60 * 1000, max: 5 }),
+    validateRequest('login'),
+  ],
   authController.login
 );
 
@@ -66,9 +70,11 @@ router.get(
 // ========== JOURNAL ROUTES ==========
 router.post(
   '/journal',
-  authMiddleware,
-  rateLimitMiddleware({ windowMs: 60 * 1000, max: 10 }),
-  validateRequest('createJournal'),
+  [
+    authMiddleware,
+    rateLimitMiddleware({ windowMs: 60 * 1000, max: 10 }),
+    validateRequest('createJournal'),
+  ],
   journalController.createJournal
 );
 

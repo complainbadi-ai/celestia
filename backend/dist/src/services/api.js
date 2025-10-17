@@ -13,6 +13,15 @@ exports.api = void 0;
 exports.api = {
     get: (url) => __awaiter(void 0, void 0, void 0, function* () {
         console.log('Faking API call to', url);
-        return { data: {} };
+        return {
+            data: {
+                id: '1',
+                zodiac_sign: 'aries',
+                date: '2024-07-26',
+                content: 'Today is a good day for Aries.',
+                tags: ['general', 'optimism'],
+                action_prompt: 'Take a walk outside.',
+            },
+        };
     }),
 };
