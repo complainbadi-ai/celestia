@@ -1,5 +1,4 @@
-# Celestia Horoscope App
-
+# Celestia Horoscope
 ## Overview
 Celestia is a production-ready horoscope mobile application with ethical safeguards, distress detection, and privacy-first design. Built with React Native (Expo), Node.js/Express, PostgreSQL, and Redis.
 
