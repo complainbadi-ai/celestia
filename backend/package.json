@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "celestia-backend",
   "version": "1.0.0",
   "scripts": {
@@ -9,22 +9,30 @@
     "seed": "node -e \"console.log('Seed data loaded')\""
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "pg": "^8.11.0",
-    "redis": "^4.6.7",
-    "dotenv": "^16.0.3",
-    "cors": "^2.8.5",
-    "helmet": "^7.0.0",
-    "morgan": "^1.10.0",
-    "cookie-parser": "^1.4.6",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-navigation/native": "^7.1.18",
     "bcrypt": "^5.1.0",
-    "jsonwebtoken": "^9.0.0"
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "expo-linear-gradient": "^15.0.7",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.0",
+    "react": "^19.2.0",
+    "react-i18next": "^16.0.1",
+    "react-native": "^0.80.2",
+    "redis": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
     "@types/express": "^4.17.17",
-    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.2.2",
+    "@types/react-native": "^0.72.8",
     "nodemon": "^3.0.0",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
   }
 }

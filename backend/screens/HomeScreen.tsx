@@ -11,9 +11,9 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
-import HoroscopeCard from '../components/HoroscopeCard';
-import SafetyModal from '../components/SafetyModal';
-import { api } from '../services/api';
+import HoroscopeCard from '@components/HoroscopeCard';
+import SafetyModal from '@components/SafetyModal';
+import { api } from '@services/api';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -82,7 +82,7 @@ export default function HomeScreen() {
   };
 
   const handleJournal = () => {
-    navigation.navigate('Journal', { horoscopeId: horoscope?.id });
+    // navigation.navigate('Journal', { horoscopeId: horoscope?.id });
   };
 
   const handleSave = async () => {
