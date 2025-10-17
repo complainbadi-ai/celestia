@@ -1,0 +1,449 @@
+# Celestia 6-Week Launch Checklist
+
+## Week 1: Foundation & Setup
+
+### Development Environment
+- [ ] All team members have local development environment running
+- [ ] Docker Compose successfully starts all services (Postgres, Redis, Backend)
+- [ ] Mobile app runs on iOS simulator and Android emulator
+- [ ] Database migrations execute successfully
+- [ ] Seed data loads correctly (360 horoscopes)
+
+### Code Review & Quality
+- [ ] All code passes linting (no errors, warnings acceptable with justification)
+- [ ] TypeScript strict mode enabled and all type errors resolved
+- [ ] Unit test coverage > 70% for backend
+- [ ] Unit test coverage > 60% for mobile app
+- [ ] Integration tests passing for all API endpoints
+
+### Documentation
+- [ ] README.md complete with setup instructions
+- [ ] API documentation generated (Swagger/OpenAPI)
+- [ ] privacy_safety.md reviewed by legal/compliance consultant
+- [ ] Code comments added for complex algorithms (especially distress detection)
+
+### Security Baseline
+- [ ] All secrets moved to environment variables (no hardcoded credentials)
+- [ ] .env.example files created for all projects
+- [ ] npm audit shows no high/critical vulnerabilities
+- [ ] SQL injection protection verified (parameterized queries only)
+- [ ] XSS protection enabled in Express (helmet middleware)
+
+---
+
+## Week 2: Content & Compliance
+
+### Content Validation
+- [ ] All 360 horoscope entries validated for:
+  - [ ] Probabilistic language ("may," "might," "could")
+  - [ ] No deterministic health/death/legal claims
+  - [ ] Action prompts present and constructive
+  - [ ] Tags appropriate and consistent
+- [ ] Mental health escalation copy reviewed by mental health professional
+- [ ] Crisis resources list verified with current hotline numbers
+- [ ] All user-facing copy reviewed for inclusive language
+
+### Privacy & Legal
+- [ ] Privacy policy drafted and reviewed by legal counsel
+- [ ] Terms of service drafted
+- [ ] Cookie policy created (if applicable)
+- [ ] GDPR compliance checklist completed
+- [ ] COPPA compliance verified for users < 13
+- [ ] Age gating flow tested with parental consent email
+- [ ] Data retention policy implemented in code
+
+### Accessibility
+- [ ] WCAG 2.1 AA compliance audit completed
+- [ ] Screen reader testing on iOS VoiceOver
+- [ ] Screen reader testing on Android TalkBack
+- [ ] Color contrast ratios meet 4.5:1 minimum
+- [ ] All interactive elements have accessibility labels
+- [ ] Font scaling tested (up to 200%)
+
+---
+
+## Week 3: Safety & Testing
+
+### Distress Detection System
+- [ ] Keyword detection tested with 20+ test cases
+- [ ] Sentiment analysis threshold validated
+- [ ] Frequency pattern detection tested (7+ days negative sentiment)
+- [ ] Safety modal triggers correctly on all detection types
+- [ ] Follow-up check-in notification tested (24-hour delay)
+- [ ] Crisis resources display correctly based on user timezone
+- [ ] Admin dashboard shows distress reports accurately
+
+### User Scenarios Testing
+Execute these 10 user scenarios:
+- [ ] **Scenario 1**: New user, age 25, casual usage, happy sentiment
+- [ ] **Scenario 2**: New user, age 16, requires parental consent flow
+- [ ] **Scenario 3**: User exhibits distress keywords in journal, safety modal triggers
+- [ ] **Scenario 4**: User with negative sentiment for 7 consecutive days, pattern detected
+- [ ] **Scenario 5**: Privacy-focused user, opts out of all personalization
+- [ ] **Scenario 6**: User exports all data, verifies completeness
+- [ ] **Scenario 7**: User deletes account, data removed after 30 days
+- [ ] **Scenario 8**: High-frequency sharer, uses social card feature 10+ times
+- [ ] **Scenario 9**: Premium user, upgrades and accesses premium features
+- [ ] **Scenario 10**: User on slow 3G connection, offline mode works
+
+### Security Testing
+- [ ] Penetration testing completed by external firm (or internal security team)
+- [ ] Authentication tested: brute force protection, session management
+- [ ] Authorization tested: users cannot access others' data
+- [ ] Rate limiting tested on all sensitive endpoints
+- [ ] CORS configuration verified
+- [ ] CSRF protection tested on admin panel
+- [ ] File upload validation (if applicable)
+
+---
+
+## Week 4: Infrastructure & DevOps
+
+### CI/CD Pipeline
+- [ ] GitHub Actions workflows running successfully
+- [ ] All tests pass in CI environment
+- [ ] Docker images build successfully
+- [ ] Mobile APK builds successfully via EAS Build
+- [ ] iOS IPA builds successfully (requires Apple Developer account)
+- [ ] Staging deployment automated
+- [ ] Production deployment requires manual approval
+
+### Hosting & Infrastructure
+- [ ] Production database provisioned (managed Postgres recommended)
+- [ ] Redis instance provisioned (managed Redis recommended)
+- [ ] Application hosting configured (Kubernetes, ECS, or App Platform)
+- [ ] Domain name registered (celestia-app.example.com)
+- [ ] SSL certificates configured (Let's Encrypt or managed)
+- [ ] CDN configured for static assets (optional but recommended)
+- [ ] Backup strategy implemented (daily database backups)
+- [ ] Disaster recovery plan documented
+
+### Monitoring & Observability
+- [ ] Error tracking configured (Sentry or similar)
+- [ ] Application metrics configured (Prometheus/Grafana or managed)
+- [ ] Log aggregation configured (ELK stack or managed)
+- [ ] Uptime monitoring configured (UptimeRobot or similar)
+- [ ] Alerting configured for critical issues (PagerDuty or similar)
+- [ ] Dashboard created for key metrics (DAU, retention, distress reports)
+
+### Performance
+- [ ] Backend API response time < 200ms for 95th percentile
+- [ ] Mobile app cold start < 2.5 seconds on mid-range devices
+- [ ] Database queries optimized (no N+1 queries)
+- [ ] Redis caching implemented for horoscopes
+- [ ] Image assets optimized (WebP format where supported)
+- [ ] Bundle size < 15MB for mobile app
+
+---
+
+## Week 5: Beta Testing & Refinement
+
+### Beta Program
+- [ ] 50-100 beta testers recruited (diverse demographics)
+- [ ] Beta testing feedback form created (Google Forms or Typeform)
+- [ ] Beta TestFlight build distributed (iOS)
+- [ ] Beta APK distributed via Firebase App Distribution or similar (Android)
+- [ ] Beta testers complete all user scenarios
+- [ ] Crash reports analyzed and fixed
+- [ ] User feedback incorporated into backlog
+
+### Analytics Setup
+- [ ] Privacy-preserving analytics configured (Plausible or Fathom)
+- [ ] Event tracking implemented for key actions:
+  - [ ] User registration
+  - [ ] Daily horoscope view
+  - [ ] Journal entry created
+  - [ ] Safety modal triggered
+  - [ ] Share action
+  - [ ] Premium upgrade
+- [ ] Cohort analysis configured (D1, D7, D30 retention)
+- [ ] Funnel analysis configured (onboarding completion rate)
+
+### Content Pipeline
+- [ ] Month 2 horoscopes written (360 more entries)
+- [ ] Month 3 horoscopes written (360 more entries)
+- [ ] Content calendar created for next 6 months
+- [ ] Admin dashboard tested for content management
+- [ ] Horoscope update process documented
+
+### Bug Fixes & Polish
+- [ ] All critical bugs from beta testing fixed
+- [ ] All high-priority bugs from beta testing fixed
+- [ ] UI polish pass completed (consistent spacing, colors, fonts)
+- [ ] Loading states refined (skeleton screens, progress indicators)
+- [ ] Error states refined (helpful error messages, retry actions)
+- [ ] Empty states refined (encouraging copy, clear CTAs)
+
+---
+
+## Week 6: Pre-Launch & Launch
+
+### App Store Preparation
+- [ ] **iOS App Store**:
+  - [ ] App Store Connect account configured
+  - [ ] App listing created with screenshots, description, keywords
+  - [ ] Privacy policy URL submitted
+  - [ ] Support URL created
+  - [ ] Age rating questionnaire completed (likely 12+ or 17+)
+  - [ ] App submitted for review (allow 1-3 days for review)
+- [ ] **Google Play Store**:
+  - [ ] Google Play Console account configured
+  - [ ] App listing created with screenshots, description
+  - [ ] Privacy policy URL submitted
+  - [ ] Content rating questionnaire completed
+  - [ ] App submitted for review (usually 24-48 hours)
+
+### Final Security Review
+- [ ] Third-party security audit completed (highly recommended)
+- [ ] Findings from security audit remediated
+- [ ] Bug bounty program prepared (optional but good for reputation)
+- [ ] Incident response plan tested (tabletop exercise)
+- [ ] Security contact email configured (security@celestia-app.example.com)
+
+### Legal & Compliance Final Check
+- [ ] Privacy policy live on website
+- [ ] Terms of service live on website
+- [ ] Cookie banner/consent implemented (if using cookies)
+- [ ] Data processing agreement (DPA) ready for enterprise customers (if applicable)
+- [ ] COPPA compliance re-verified
+- [ ] GDPR compliance re-verified (especially right to erasure, data portability)
+
+### Marketing & Launch
+- [ ] Landing page live (celestia-app.example.com)
+  - [ ] App Store badges
+  - [ ] Google Play badge
+  - [ ] Privacy policy link
+  - [ ] Contact information
+  - [ ] Screenshots and feature highlights
+- [ ] Social media accounts created (optional: Instagram, Twitter, TikTok)
+- [ ] Press kit prepared (logo, screenshots, app description)
+- [ ] Beta testers notified of public launch
+- [ ] Launch announcement prepared (blog post, email, social media)
+
+### Launch Day Checklist
+- [ ] Final smoke test on production environment
+- [ ] All monitoring dashboards open and checked
+- [ ] On-call rotation scheduled for first 48 hours
+- [ ] App submitted to stores (if not already done)
+- [ ] Backend services scaled appropriately for expected traffic
+- [ ] Database connection limits verified
+- [ ] Rate limits configured to prevent abuse
+- [ ] Send launch announcement
+- [ ] Monitor error rates every hour for first 12 hours
+- [ ] Monitor user feedback in app store reviews
+- [ ] Respond to critical issues within 1 hour
+
+---
+
+## Post-Launch (Week 7+)
+
+### First 24 Hours
+- [ ] Monitor crash reports (target: < 1% crash rate)
+- [ ] Monitor API error rates (target: < 0.5% error rate)
+- [ ] Monitor distress report count (expect initial noise, refine algorithm)
+- [ ] Respond to all app store reviews (positive and negative)
+- [ ] Check server capacity (scale up if > 70% CPU/memory)
+
+### First Week
+- [ ] Daily metrics review (DAU, retention, distress reports)
+- [ ] Critical bug fixes deployed within 24 hours
+- [ ] High-priority bug fixes deployed within 3 days
+- [ ] User feedback categorized and prioritized
+- [ ] Roadmap updated based on early learnings
+
+### First Month
+- [ ] D1, D7, D30 retention calculated
+- [ ] User segmentation analysis (demographics, usage patterns)
+- [ ] Distress detection algorithm tuned based on false positives/negatives
+- [ ] Content performance analyzed (which horoscopes resonate most)
+- [ ] Feature usage analyzed (journal, compatibility, sharing)
+- [ ] Premium conversion rate analyzed (if applicable)
+- [ ] Quarterly content plan finalized
+
+---
+
+## Acceptance Criteria Summary
+
+### Technical
+- ✅ All services run locally via `docker-compose up`
+- ✅ All tests pass (`npm test` in backend and mobile)
+- ✅ Mobile app builds successfully (APK and IPA)
+- ✅ API responds to all documented endpoints
+- ✅ Database migrations run successfully
+
+### Content
+- ✅ 360 horoscope entries present and validated
+- ✅ No deterministic language in predictions
+- ✅ All entries have action prompts
+- ✅ Mental health escalation copy present
+
+### Safety
+- ✅ Distress detection triggers correctly
+- ✅ Safety modal displays with resources
+- ✅ Crisis hotlines listed and verified
+- ✅ Follow-up check-in sent after 24 hours
+
+### Privacy
+- ✅ Minimal data collection (nickname, birthdate, timezone only)
+- ✅ Journals encrypted with AES-256
+- ✅ User can export data (GDPR right to access)
+- ✅ User can delete account (GDPR right to erasure)
+- ✅ Age gating implemented for users < 14
+- ✅ Parental consent flow working
+
+### Compliance
+- ✅ Privacy policy accessible and complete
+- ✅ GDPR checklist completed
+- ✅ COPPA checklist completed
+- ✅ No manipulative dark patterns
+- ✅ Safety features not behind paywall
+
+---
+
+## Emergency Contacts
+
+- **On-Call Engineer**: [PHONE/EMAIL]
+- **DevOps Lead**: [PHONE/EMAIL]
+- **Security Lead**: [PHONE/EMAIL]
+- **Legal Counsel**: [PHONE/EMAIL]
+- **Mental Health Consultant**: [PHONE/EMAIL]
+- **AWS/Cloud Support**: [SUPPORT PLAN DETAILS]
+
+---
+
+## Rollback Plan
+
+If critical issues arise post-launch:
+
+1. **Severity Assessment** (5 minutes):
+   - Critical: App crashes, data loss, security breach → Immediate rollback
+   - High: Feature broken, poor performance → Fix forward or rollback within 1 hour
+   - Medium: UI issues, minor bugs → Fix in next release
+
+2. **Rollback Procedure** (15 minutes):
+   ```bash
+   # Backend rollback
+   aws ecs update-service \
+     --cluster celestia-production \
+     --service celestia-backend-production \
+     --task-definition celestia-backend:[PREVIOUS_VERSION]
+   
+   # Database rollback (if migration issue)
+   npm run migrate:rollback
+   ```
+
+3. **Communication**:
+   - Update status page immediately
+   - Notify users via in-app banner if service degraded
+   - Post to social media if widespread issue
+   - Send post-mortem within 48 hours
+
+---
+
+## Success Metrics (90-Day Targets)
+
+### User Acquisition
+- [ ] 10,000+ downloads (iOS + Android combined)
+- [ ] 5,000+ active users (opened app in last 7 days)
+- [ ] App Store rating > 4.0 stars
+- [ ] Google Play rating > 4.0 stars
+
+### Engagement
+- [ ] 60%+ D1 retention (users who return next day)
+- [ ] 30%+ D7 retention (users who return after 1 week)
+- [ ] 15%+ D30 retention (users who return after 1 month)
+- [ ] Average 3+ horoscope views per user per week
+- [ ] 20%+ of users create at least 1 journal entry
+
+### Safety & Trust
+- [ ] < 1% of users trigger distress detection (indicates good user base mental health)
+- [ ] 100% of distress reports reviewed within 24 hours
+- [ ] 0 security incidents or data breaches
+- [ ] 0 privacy complaints to regulatory bodies
+
+### Business (if monetization enabled)
+- [ ] 5%+ premium conversion rate
+- [ ] $5,000+ monthly recurring revenue (1,000 users × $4.99/month)
+- [ ] < 10% monthly churn rate for premium subscribers
+
+---
+
+## Risk Register
+
+### High-Risk Items
+
+| Risk | Impact | Mitigation | Owner |
+|------|--------|-----------|-------|
+| Distress detection false positives annoy users | High | A/B test threshold, allow users to dismiss | Product |
+| App store rejection for astrology/pseudoscience | High | Emphasize entertainment disclaimer, show safety features | Legal/Product |
+| Viral growth overwhelms infrastructure | High | Auto-scaling configured, load testing done | DevOps |
+| Data breach exposes PII | Critical | Encryption at rest, regular security audits, bug bounty | Security |
+| Mental health crisis not handled properly | Critical | Mental health professional on retainer, clear escalation paths | Operations |
+
+### Medium-Risk Items
+
+| Risk | Impact | Mitigation | Owner |
+|------|--------|-----------|-------|
+| Horoscope content becomes repetitive | Medium | Content calendar, multiple writers, user feedback | Content |
+| Premium features insufficient value | Medium | User research, iterate on premium offering | Product |
+| Localization challenges for non-English markets | Medium | Start with English-only, expand based on demand | Product |
+| Competition from established horoscope apps | Medium | Differentiate on safety/privacy, superior UX | Marketing |
+
+---
+
+## Lessons Learned Template
+
+After each major milestone, document:
+
+1. **What went well?**
+   - [Specific successes]
+
+2. **What could be improved?**
+   - [Specific challenges]
+
+3. **What will we do differently next time?**
+   - [Actionable changes]
+
+4. **Key metrics achieved:**
+   - [Quantitative outcomes]
+
+---
+
+## Next Release Planning (v1.1)
+
+Features to consider for 30-60 days post-launch:
+
+- [ ] Push notifications for daily horoscope (opt-in)
+- [ ] Compatibility feature with friends (social)
+- [ ] Birth chart calculator (premium feature)
+- [ ] Dark mode theme
+- [ ] Widget for iOS and Android home screens
+- [ ] Localization (Spanish, French, German)
+- [ ] Journal export in PDF format
+- [ ] Mood tracking integration
+- [ ] Community forum (moderated)
+
+---
+
+## Final Pre-Launch Ceremony
+
+**Go/No-Go Meeting** (1 hour before launch):
+
+Attendees: Engineering Lead, Product Manager, Legal, DevOps, Security
+
+Review:
+1. All checklist items completed? (Go/No-Go)
+2. All critical stakeholders present and ready? (Go/No-Go)
+3. Rollback plan understood by all? (Go/No-Go)
+4. Monitoring dashboards ready? (Go/No-Go)
+5. On-call rotation confirmed? (Go/No-Go)
+
+If all "Go" → **LAUNCH** 🚀
+
+If any "No-Go" → Reschedule and complete remaining items
+
+---
+
+**Document Version**: 1.0  
+**Last Updated**: 2025-01-15  
+**Next Review**: Weekly during launch period, then monthly

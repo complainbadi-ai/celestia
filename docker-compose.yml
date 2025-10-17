@@ -1,0 +1,122 @@
+version: '3.9'
+
+services:
+  # ========== DATABASE ==========
+  postgres:
+    image: postgres:14-alpine
+    container_name: celestia-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: celestia
+      POSTGRES_PASSWORD: celestia_dev_password
+      POSTGRES_DB: celestia_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/src/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./backend/src/db/seeds.sql:/docker-entrypoint-initdb.d/02-seeds.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U celestia"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ========== REDIS ==========
+  redis:
+    image: redis:7-alpine
+    container_name: celestia-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes
+
+  # ========== BACKEND API ==========
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: celestia-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://celestia:celestia_dev_password@postgres:5432/celestia_dev
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: dev_jwt_secret_change_in_production
+      ENCRYPTION_KEY: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+      ALLOWED_ORIGINS: http://localhost:8081,http://localhost:19006,http://localhost:19000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/package.json:/app/package.json
+      - backend_node_modules:/app/node_modules
+    command: npm run dev
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ========== ADMIN DASHBOARD ==========
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      target: development
+    container_name: celestia-admin
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      REACT_APP_API_URL: http://localhost:3000/api
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./admin/src:/app/src
+      - ./admin/public:/app/public
+      - admin_node_modules:/app/node_modules
+    command: npm start
+
+  # ========== NGINX (Optional reverse proxy for local dev) ==========
+  nginx:
+    image: nginx:alpine
+    container_name: celestia-nginx
+    restart: unless-stopped
+    depends_on:
+      - backend
+      - admin
+    ports:
+      - "80:80"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    profiles:
+      - with-proxy
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  backend_node_modules:
+    driver: local
+  admin_node_modules:
+    driver: local
+
+networks:
+  default:
+    name: celestia-network
