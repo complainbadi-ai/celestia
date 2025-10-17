@@ -43,11 +43,6 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    },
-    "developmentClient": {
-      "devServer": {
-        "origin": ""
-      }
     }
   }
 }
