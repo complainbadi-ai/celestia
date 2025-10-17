@@ -46,7 +46,7 @@ const RegistrationScreen = () => {
   const handleRegister = () => {
     if (validateForm()) {
       console.log('Registering with:', { email, name, birthDate, sex });
-      router.replace('/(tabs)/home');
+      router.replace('/(tabs)');
     }
   };
 
