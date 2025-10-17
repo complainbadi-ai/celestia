@@ -1,3 +1,4 @@
+
 import express from 'express';
 import { authMiddleware, adminMiddleware } from './middleware/auth';
 import { rateLimitMiddleware } from './middleware/rateLimit';
@@ -6,6 +7,7 @@ import * as authController from './controllers/authController';
 import * as horoscopeController from './controllers/horoscopeController';
 import * as journalController from './controllers/journalController';
 import * as adminController from './controllers/adminController';
+import * as chatController from './controllers/chatController';
 
 const router = express.Router();
 
@@ -95,6 +97,17 @@ router.get(
   '/journal/export',
   authMiddleware,
   journalController.exportJournals
+);
+
+// ========== CHAT ROUTES ==========
+router.post(
+  '/chat/send',
+  [
+    authMiddleware,
+    rateLimitMiddleware({ windowMs: 60 * 1000, max: 20 }), // Allow more frequent chat messages
+    validateRequest('sendMessage'),
+  ],
+  chatController.sendMessage
 );
 
 // ========== SAFETY & REPORTING ROUTES ==========
