@@ -1,21 +1,20 @@
-
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { ParallaxScrollView } from '@/components/parallax-scroll-view';
+import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useRouter } from 'expo-router';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 
 const HomeScreen = () => {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useColorScheme();
   const router = useRouter();
 
   const Card = ({ title, icon, screen, color }) => (
     <TouchableOpacity onPress={() => router.push(screen)}>
-      <ThemedView style={[styles.card, { backgroundColor: Colors[colorScheme ?? 'light'].card }]}>
+      <ThemedView style={[styles.card, { backgroundColor: Colors[colorScheme].card }]}>
         <IconSymbol name={icon} size={32} color={color} />
         <ThemedText style={styles.cardText}>{title}</ThemedText>
       </ThemedView>
@@ -27,7 +26,7 @@ const HomeScreen = () => {
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
         <ThemedView style={styles.header}>
-          <IconSymbol name="sparkles" size={120} color={Colors[colorScheme ?? 'light'].tint} />
+          <IconSymbol name="sparkles" size={120} color={Colors[colorScheme].tint} />
         </ThemedView>
       }>
       <ThemedView style={styles.container}>
@@ -39,7 +38,7 @@ const HomeScreen = () => {
           <Card title="Chat with AI" icon="message.fill" screen="/chat" color="#1E90FF" />
         </View>
 
-        <ThemedView style={[styles.quoteContainer, { backgroundColor: Colors[colorScheme ?? 'light'].card }]}>
+        <ThemedView style={[styles.quoteContainer, { backgroundColor: Colors[colorScheme].card }]}>
           <ThemedText style={styles.quote}>"The best way to predict the future is to create it."</ThemedText>
           <ThemedText style={styles.quoteAuthor}>- Abraham Lincoln</ThemedText>
         </ThemedView>

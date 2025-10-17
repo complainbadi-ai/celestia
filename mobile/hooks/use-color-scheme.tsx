@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useColorScheme as useRNColorScheme } from 'react-native';
 
