@@ -1,44 +1,75 @@
+import { Tabs } from "expo-router";
+import React from "react";
 
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { HapticTab } from "@/components/haptic-tab";
+import { Colors } from "@/constants/theme";
+import { useColorScheme } from "@/hooks/use-color-scheme";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const { colorScheme } = useColorScheme();
+  const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
-        tabBarStyle: {
-          backgroundColor: Colors[colorScheme].card,
-          borderTopColor: Colors[colorScheme].border,
-        },
-      }}>
+      }}
+    >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="horoscope"
-        options={{
-          title: 'Horoscope',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="star.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+          tabBarButton: HapticTab,
         }}
       />
       <Tabs.Screen
         name="chat"
         options={{
-          title: 'Chat',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="message.fill" color={color} />,
+          title: "Chat",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "chat" : "chat-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+          tabBarButton: HapticTab,
+        }}
+      />
+      <Tabs.Screen
+        name="horoscope"
+        options={{
+          title: "Horoscope",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "weather-night" : "weather-night"}
+              size={24}
+              color={color}
+            />
+          ),
+          tabBarButton: HapticTab,
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? "cog" : "cog-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+          tabBarButton: HapticTab,
         }}
       />
     </Tabs>
