@@ -1,1 +1,15 @@
-node_modules/
+# Dependencies
+/node_modules
+/backend/node_modules
+/mobile/node_modules
+
+# Build artifacts
+/backend/dist
+/mobile/.expo
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
