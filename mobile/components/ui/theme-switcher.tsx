@@ -13,7 +13,9 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <TouchableOpacity onPress={toggleColorScheme} style={styles.button}>
+    <TouchableOpacity
+      onPress={toggleColorScheme}
+      style={[styles.button, { backgroundColor: Colors[colorScheme].card }]}>
       <IconSymbol name={colorScheme === 'dark' ? 'sun.max.fill' : 'moon.fill'} size={24} color={Colors[colorScheme].text} />
     </TouchableOpacity>
   );
@@ -24,7 +26,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: Colors.light.card,
     padding: 12,
     borderRadius: 30,
     shadowColor: '#000',

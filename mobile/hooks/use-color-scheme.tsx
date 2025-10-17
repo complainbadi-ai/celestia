@@ -3,15 +3,15 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { useColorScheme as useRNColorScheme } from 'react-native';
 
 const ColorSchemeContext = createContext({
-  colorScheme: 'light',
+  colorScheme: 'light' as 'light' | 'dark',
   setColorScheme: (colorScheme: 'light' | 'dark') => {},
 });
 
 export const useColorScheme = () => useContext(ColorSchemeContext);
 
 export const ColorSchemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [colorScheme, setColorScheme] = useState('light');
   const rnColorScheme = useRNColorScheme();
+  const [colorScheme, setColorScheme] = useState(rnColorScheme ?? 'light');
 
   useEffect(() => {
     setColorScheme(rnColorScheme ?? 'light');
