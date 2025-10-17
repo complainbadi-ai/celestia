@@ -42,7 +42,7 @@ const HoroscopeScreen = () => {
       }>
       <ThemedView style={styles.container}>
         <ThemedText type="title" style={styles.title}>Your Horoscope</ThemedText>
-        <ThemedText style={styles.subtitle}>Select a period to view your horoscope</ThemedText>
+        <ThemedText style={[styles.subtitle, { color: Colors[colorScheme ?? 'light'].icon }]}>Select a period to view your horoscope</ThemedText>
 
         <SegmentedControl
           segments={Object.keys(horoscopeData)}
@@ -67,13 +67,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 32,
+    fontSize: 28, // Reduced font size
     fontWeight: 'bold',
     marginBottom: 8,
   },
   subtitle: {
-    fontSize: 18,
-    color: '#666',
+    fontSize: 16,
     marginBottom: 24,
   },
 });

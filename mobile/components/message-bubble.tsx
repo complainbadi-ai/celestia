@@ -4,7 +4,7 @@ import { ThemedView } from '@/components/themed-view';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 interface MessageBubbleProps {
   message: {
@@ -27,7 +27,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             alignSelf: isUser ? 'flex-end' : 'flex-start',
           },
         ]}>
-        <ThemedText style={{ color: isUser ? 'white' : Colors[colorScheme ?? 'light'].text }}>{message.text}</ThemedText>
+        <ThemedText style={{ color: isUser ? Colors[colorScheme ?? 'light'].background : Colors[colorScheme ?? 'light'].text }}>{message.text}</ThemedText>
       </ThemedView>
     </View>
   );
