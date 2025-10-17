@@ -16,7 +16,7 @@ const HomeScreen = () => {
     <TouchableOpacity onPress={() => router.push(screen)}>
       <ThemedView style={[styles.card, { backgroundColor: Colors[colorScheme].card }]}>
         <IconSymbol name={icon} size={32} color={color} />
-        <ThemedText style={styles.cardText}>{title}</ThemedText>
+        <ThemedText type="defaultSemiBold">{title}</ThemedText>
       </ThemedView>
     </TouchableOpacity>
   );
@@ -30,8 +30,8 @@ const HomeScreen = () => {
         </ThemedView>
       }>
       <ThemedView style={styles.container}>
-        <ThemedText type="title" style={styles.title}>Welcome!</ThemedText>
-        <ThemedText style={styles.subtitle}>What would you like to do today?</ThemedText>
+        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="subtitle">What would you like to do today?</ThemedText>
 
         <View style={styles.cardContainer}>
           <Card title="Daily Horoscope" icon="star.fill" screen="/horoscope" color="#FFD700" />
@@ -58,16 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 24,
-  },
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -89,24 +79,17 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  cardText: {
-    marginTop: 12,
-    fontSize: 16,
-    fontWeight: '600',
-  },
   quoteContainer: {
     padding: 20,
     borderRadius: 16,
     alignItems: 'center',
   },
   quote: {
-    fontSize: 18,
     fontStyle: 'italic',
     textAlign: 'center',
     marginBottom: 8,
   },
   quoteAuthor: {
-    fontSize: 14,
     color: '#999',
   },
 });
