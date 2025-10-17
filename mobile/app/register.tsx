@@ -2,8 +2,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from '@/constants/theme';
 
 const RegistrationScreen = () => {
+  const { colorScheme } = useColorScheme();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
@@ -17,36 +20,36 @@ const RegistrationScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Email:</Text>
+    <View style={[styles.container, { backgroundColor: Colors[colorScheme].background }]}>
+      <Text style={[styles.label, { color: Colors[colorScheme].text }]}>Email:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: Colors[colorScheme].text, borderColor: Colors[colorScheme].text }]}
         onChangeText={setEmail}
         value={email}
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <Text style={styles.label}>Name:</Text>
+      <Text style={[styles.label, { color: Colors[colorScheme].text }]}>Name:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: Colors[colorScheme].text, borderColor: Colors[colorScheme].text }]}
         onChangeText={setName}
         value={name}
       />
-      <Text style={styles.label}>Birth Date:</Text>
+      <Text style={[styles.label, { color: Colors[colorScheme].text }]}>Birth Date:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: Colors[colorScheme].text, borderColor: Colors[colorScheme].text }]}
         onChangeText={setBirthDate}
         value={birthDate}
         placeholder="YYYY-MM-DD"
       />
-      <Text style={styles.label}>Sex (F/M):</Text>
+      <Text style={[styles.label, { color: Colors[colorScheme].text }]}>Sex (F/M):</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: Colors[colorScheme].text, borderColor: Colors[colorScheme].text }]}
         onChangeText={setSex}
         value={sex}
         maxLength={1}
       />
-      <Button title="Register" onPress={handleRegister} />
+      <Button title="Register" onPress={handleRegister} color={Colors[colorScheme].tint} />
     </View>
   );
 };
@@ -63,7 +66,6 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 16,
     padding: 8,
