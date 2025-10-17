@@ -19,7 +19,7 @@ const horoscopeData = {
 };
 
 const HoroscopeScreen = () => {
-  const colorScheme = useColorScheme();
+  const { colorScheme = 'light' } = useColorScheme();
   const [period, setPeriod] = useState('Daily');
   const [loading, setLoading] = useState(false);
 
@@ -32,17 +32,19 @@ const HoroscopeScreen = () => {
     }, 500);
   };
 
+  const currentHoroscope = horoscopeData[period];
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
       headerImage={
         <ThemedView style={styles.header}>
-          <IconSymbol name="moon.stars.fill" size={120} color={Colors[colorScheme ?? 'light'].tint} />
+          <IconSymbol name="moon.stars.fill" size={120} color={Colors[colorScheme].tint} />
         </ThemedView>
       }>
       <ThemedView style={styles.container}>
         <ThemedText type="title" style={styles.title}>Your Horoscope</ThemedText>
-        <ThemedText style={[styles.subtitle, { color: Colors[colorScheme ?? 'light'].icon }]}>Select a period to view your horoscope</ThemedText>
+        <ThemedText style={[styles.subtitle, { color: Colors[colorScheme].secondaryText }]}>Select a period to view your horoscope</ThemedText>
 
         <SegmentedControl
           segments={Object.keys(horoscopeData)}
@@ -50,7 +52,13 @@ const HoroscopeScreen = () => {
           onChange={handlePeriodChange}
         />
 
-        <HoroscopeView horoscope={horoscopeData[period]} loading={loading} error={null} />
+        {currentHoroscope ? (
+          <HoroscopeView horoscope={currentHoroscope} loading={loading} error={null} />
+        ) : (
+          <ThemedView style={styles.notFoundContainer}>
+            <ThemedText>Horoscope not found for the selected period.</ThemedText>
+          </ThemedView>
+        )}
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -67,13 +75,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 28, // Reduced font size
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     marginBottom: 24,
+  },
+  notFoundContainer: {
+    marginTop: 24,
+    alignItems: 'center',
   },
 });
 

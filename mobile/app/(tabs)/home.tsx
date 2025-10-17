@@ -9,7 +9,7 @@ import { useRouter } from 'expo-router';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 
 const HomeScreen = () => {
-  const { colorScheme } = useColorScheme();
+  const { colorScheme = 'light' } = useColorScheme();
   const router = useRouter();
 
   const Card = ({ title, icon, screen, color }) => (
@@ -40,7 +40,7 @@ const HomeScreen = () => {
 
         <ThemedView style={[styles.quoteContainer, { backgroundColor: Colors[colorScheme].card }]}>
           <ThemedText style={styles.quote}>"The best way to predict the future is to create it."</ThemedText>
-          <ThemedText style={styles.quoteAuthor}>- Abraham Lincoln</ThemedText>
+          <ThemedText style={[styles.quoteAuthor, { color: Colors[colorScheme].secondaryText }]}>- Abraham Lincoln</ThemedText>
         </ThemedView>
 
       </ThemedView>
@@ -70,13 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 16,
     padding: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', // Updated from shadow*
     elevation: 3,
   },
   quoteContainer: {
@@ -90,7 +84,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   quoteAuthor: {
-    color: '#999',
+    // color has been moved to the component to use theme colors
   },
 });
 

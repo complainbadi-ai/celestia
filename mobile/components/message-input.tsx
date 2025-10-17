@@ -2,16 +2,17 @@
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import React from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 
 interface MessageInputProps {
   value: string;
   onChangeText: (text: string) => void;
   onSend: () => void;
+  loading: boolean;
 }
 
-export const MessageInput: React.FC<MessageInputProps> = ({ value, onChangeText, onSend }) => {
+export const MessageInput: React.FC<MessageInputProps> = ({ value, onChangeText, onSend, loading }) => {
   const colorScheme = useColorScheme();
 
   return (
@@ -22,9 +23,14 @@ export const MessageInput: React.FC<MessageInputProps> = ({ value, onChangeText,
         onChangeText={onChangeText}
         placeholder="Chat with the Wise One..."
         placeholderTextColor={Colors[colorScheme ?? 'light'].tabIconDefault}
+        editable={!loading}
       />
-      <TouchableOpacity onPress={onSend} style={styles.sendButton}>
-        <IconSymbol name="arrow.up.circle.fill" size={32} color={Colors[colorScheme ?? 'light'].tint} />
+      <TouchableOpacity onPress={onSend} style={styles.sendButton} disabled={loading}>
+        {loading ? (
+          <ActivityIndicator color={Colors[colorScheme ?? 'light'].tint} />
+        ) : (
+          <IconSymbol name="arrow.up.circle.fill" size={32} color={Colors[colorScheme ?? 'light'].tint} />
+        )}
       </TouchableOpacity>
     </View>
   );
