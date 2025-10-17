@@ -149,7 +149,7 @@ export default function HomeScreen() {
               accessibilityLabel={t('horoscope.actions.journal')}
               accessibilityHint={t('horoscope.actions.journalHint')}
             >
-              <Feather name="edit-3" size={20} color="#6B4CE6" />
+              <Feather name="edit-3" size={20} color="#5026C8" />
               <Text style={styles.actionText}>{t('horoscope.actions.journal')}</Text>
             </TouchableOpacity>
 
@@ -160,7 +160,7 @@ export default function HomeScreen() {
               accessibilityLabel={t('horoscope.actions.share')}
               accessibilityHint={t('horoscope.actions.shareHint')}
             >
-              <Feather name="share-2" size={20} color="#6B4CE6" />
+              <Feather name="share-2" size={20} color="#5026C8" />
               <Text style={styles.actionText}>{t('horoscope.actions.share')}</Text>
             </TouchableOpacity>
 
@@ -171,7 +171,7 @@ export default function HomeScreen() {
               accessibilityLabel={t('horoscope.actions.save')}
               accessibilityHint={t('horoscope.actions.saveHint')}
             >
-              <Feather name="bookmark" size={20} color="#6B4CE6" />
+              <Feather name="bookmark" size={20} color="#5026C8" />
               <Text style={styles.actionText}>{t('horoscope.actions.save')}</Text>
             </TouchableOpacity>
           </View>
@@ -190,7 +190,7 @@ export default function HomeScreen() {
             accessibilityLabel={t('safety.resourcesLabel')}
             accessibilityRole="button"
           >
-            <Feather name="heart" size={18} color="#E84855" />
+            <Feather name="heart" size={18} color="#FFFFFF" />
             <Text style={styles.safetyButtonText}>
               {t('safety.needSupport')}
             </Text>
@@ -248,10 +248,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 12,
     minWidth: 80,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 12,
   },
   actionText: {
     fontSize: 14,
-    color: '#6B4CE6',
+    color: '#5026C8',
     marginTop: 6,
     fontWeight: '500',
   },
@@ -274,15 +276,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFE5E8',
+    backgroundColor: '#E84855',
     padding: 16,
     borderRadius: 12,
     marginTop: 8,
   },
   safetyButtonText: {
     fontSize: 15,
-    color: '#E84855',
+    color: '#FFFFFF',
     marginLeft: 8,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
 });
